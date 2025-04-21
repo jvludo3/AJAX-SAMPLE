@@ -1,0 +1,44 @@
+<!-- AJAX 
+    ASYNCRONOUS
+    JAVASCRIPT
+    AND 
+    XML
+--> 
+
+<!-- API
+    APPLICATION PROGRAMMING INTERFACE
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1</title>
+</head>
+<body>
+    <button onclick="fetchMessage()">SPANK ME</button>
+    <div id="message"></div>
+<script>
+    function fetchMessage() {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'https://jvludo3.github.io/AJAX-SAMPLE/AJAX/data.json', true);
+
+        xhr.onload = function(){
+            if (xhr.status === 200) {
+                let quote = JSON.parse(xhr.responseText);
+
+                let randomQuotes = quote[Math.floor(Math.random() * quote.length)];
+
+                document.getElementById('message').innerText = `"${randomQuotes.quote}" - ${randomQuotes.author}"`;
+            } else {
+                document.getElementById('message').innerText = 'Error';
+            }
+        };
+        xhr.send();
+    }
+</script>
+</body>
+</html>
